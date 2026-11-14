@@ -26,15 +26,18 @@ export const content = {
     eyebrow: "HEADLESS",
     title: {
       line1: "سایت و اپلیکیشن ",
-      line2: "کاملاً اختصاصی", // Gradient text
-      line3: "،\nبا سرعت و هزینهٔ یک راهکار آماده",
+      highlight: "کاملاً اختصاصی", // Gradient text
+      line2: "با سرعت و هزینهٔ یک راهکار آماده",
     },
     subtitle:
       "ظاهر محصول شما از صفر و مخصوص برندتان طراحی می‌شود؛ بک‌اند، پنل مدیریت و ماژول‌ها از قبل آماده‌اند. نتیجه، محصولی منحصربه‌فرد و همیشه به‌روز است؛ بدون دردسرهای وردپرس و قالب‌های آماده.",
     ctas: {
       primary: "درخواست مشاورهٔ رایگان",
+      primaryHref: "#cta",
       secondary: "راینو چطور کار می‌کند؟",
+      secondaryHref: "#how-it-works",
     },
+    // RTL order (rightmost first)
     benefits: [
       "کد اختصاصی، نه قالب آماده",
       "همیشه به‌روز",
@@ -42,20 +45,22 @@ export const content = {
       "راه‌اندازی سریع",
     ],
     customDesign: {
-      title: "طراحی اختصاصی شما",
+      tag: "طراحی اختصاصی شما",
       domain: "your-brand.com",
       slogan: "برند شما، به سبک خودتان",
     },
+    // RTL order (rightmost first). offset = vertical offset of each card in Figma (px)
     modules: [
-      { icon: "hero-module-store", label: "فروشگاه", sublabel: "Commerce" },
-      { icon: "hero-module-content", label: "محتوا", sublabel: "Content" },
-      { icon: "hero-module-admin", label: "پنل مدیریت", sublabel: "Admin" },
-      { icon: "hero-module-users", label: "کاربران و ورود", sublabel: "Users & Auth" },
-      { icon: "hero-module-forms", label: "فرم‌ها", sublabel: "Forms" },
+      { icon: "hero-module-store", label: "فروشگاه", sublabel: "Commerce", offset: -10 },
+      { icon: "hero-module-content", label: "محتوا", sublabel: "Content", offset: 6 },
+      { icon: "hero-module-admin", label: "پنل مدیریت", sublabel: "Admin", offset: -4 },
+      { icon: "hero-module-users", label: "کاربران و ورود", sublabel: "Users & Auth", offset: 10 },
+      { icon: "hero-module-forms", label: "فرم‌ها", sublabel: "Forms", offset: -8 },
     ],
     plate: {
       title: "بک‌اند، پنل مدیریت و ماژول‌های آمادهٔ راینو",
-      badges: ["Secure", "Always updated", "Headless API"],
+      // LTR order (left to right), as in Figma
+      badges: ["Headless API", "Always updated", "Secure"],
     },
   },
 
@@ -391,107 +396,102 @@ export const content = {
     ],
     statuses: {
       ready: { label: "آماده", description: "ساخته شده و قابل استفاده" },
-      dev: { label: "در حال توسعه", description: "در حال ساخت، به‌زودی آماده" },
-      roadmap: { label: "در نقشهٔ راه", description: "در برنامهٔ توسعه" },
+      dev: { label: "در حال توسعه", description: "در حال ساخت و تکمیل" },
+      roadmap: { label: "در نقشهٔ راه", description: "برنامه‌ریزی‌شده" },
     },
   },
 
   developers: {
-    eyebrow: "FOR DEVELOPERS",
-    title: "سادگی و کنترل؛ با هم",
+    eyebrow: "FOR DEVELOPERS & AGENCIES",
+    title: "برای تیم‌هایی که می‌خواهند سریع‌تر تحویل دهند",
     subtitle:
-      "API ساده و قدرتمند، مستندات جامع، و زیرساختی که خودتان را محدود نمی‌کند.",
-    cta: "مستندات راینو",
-    code: `const product = await rayno.products.get(slug);
-await rayno.orders.create({
-  items: [{ productId: product.id, qty: 1 }],
-  customer: { email: customer.email }
-});`,
+      "آژانس‌ها و تیم‌های فنی می‌توانند روی زیرساخت راینو، پروژه‌های اختصاصی مشتریان را با هر فریم‌ورک فرانت‌اندی بسازند.",
+    // Grid in RTL order (top-right first)
+    features: [
+      { icon: "dev-headless-api", title: "هدلس و API-محور", description: "فرانت‌اند را با هر ابزاری بسازید؛ داده و منطق از API راینو می‌آید." },
+      { icon: "dev-modular", title: "ماژولار", description: "فقط ماژول‌هایی را فعال کنید که پروژه لازم دارد؛ هر ماژول مستقل است." },
+      { icon: "dev-security", title: "امنیت و دسترسی آماده", description: "ورود، نقش‌ها و دسترسی‌ها از روز اول؛ بدون بازنویسی برای هر پروژه." },
+      { icon: "dev-one-base", title: "یک پایه، چندین پروژه", description: "تحویل سریع‌تر و نگهداری ساده‌تر برای همهٔ مشتریان آژانس." },
+    ],
+    code: {
+      fileName: "storefront.ts",
+      caption: "نمونهٔ مفهومی",
+      // Syntax-highlighted lines, verbatim from Figma (k = keyword, s = string, c = component, p = plain, m = comment)
+      lines: [
+        [["m", "// Your custom front-end, Rayno back-end"]],
+        [["k", "const"], ["p", " res = "], ["k", "await"], ["p", " fetch("], ["s", "'https://api.your-brand.com/products'"], ["p", ")"]],
+        [["k", "const"], ["p", " products = "], ["k", "await"], ["p", " res.json()"]],
+        [],
+        [["m", "// Render with your own design system"]],
+        [["k", "return"], ["p", " <"], ["c", "ProductGrid"], ["p", " items={products} />"]],
+      ] as [string, string][][],
+    },
   },
 
   faq: {
-    eyebrow: "سؤالات متداول",
-    title: "چیزهایی که معمولاً می‌پرسند",
+    eyebrow: "FAQ",
+    title: "سؤالات متداول",
+    // Only the first answer exists in Figma (1:945). The other answers are not in the design yet —
+    // fill them in here (verbatim from the client) and they become expandable automatically.
     items: [
       {
-        question: "راینو درست چه کاری انجام می‌دهد؟",
+        question: "هدلس یعنی چه و چه فرقی با وردپرس دارد؟",
         answer:
-          "راینو ظاهر محصول دیجیتال شما (سایت، فروشگاه یا اپلیکیشن) را کاملاً اختصاصی و مخصوص برندتان طراحی و پیاده‌سازی می‌کند؛ در عین حال بک‌اند، پنل مدیریت و ماژول‌های معمول (کاربران، فروشگاه، محتوا و…) از قبل آماده‌اند. نتیجه، سرعت و هزینهٔ یک راهکار آماده، با کیفیت و منحصربه‌فرد بودن یک پروژهٔ سفارشی.",
+          "در وردپرس، ظاهر و موتور سایت به هم چسبیده‌اند و ظاهر معمولاً از یک قالب آماده می‌آید. در راینو این دو جدا هستند: ظاهر سایت یا اپلیکیشن را کاملاً اختصاصی برای شما طراحی می‌کنیم و موتور آمادهٔ راینو پشت آن کار می‌کند.",
       },
-      {
-        question: "با وردپرس یا قالب‌های آماده چه فرقی دارد؟",
-        answer:
-          "وردپرس و قالب‌های آماده برای شروع سریع‌اند، اما برای رشد مشکل‌ساز. تداخل افزونه‌ها، حفره‌های امنیتی، کندی و شبیه‌بودن به هزاران سایت دیگر از مشکلات معمول آن‌ها است. راینو برعکس: کد شما کاملاً اختصاصی است، زیرساخت امن و استاندارد است، و به‌روزرسانی‌ها سایت را نمی‌شکنند.",
-      },
-      {
-        question: "با ساخت کامل از صفر چه فرقی دارد؟",
-        answer:
-          "ساخت از صفر کاملاً اختصاصی است اما زمان‌بر و پرهزینه؛ چون تیم باید بک‌اند، پنل مدیریت و ماژول‌های معمول (کاربران، نقش‌ها، ورود امن و…) را از ابتدا بسازد. راینو این بخش‌ها را آماده دارد؛ شما فقط هزینهٔ بخشی را می‌پردازید که واقعاً مخصوص شماست: طراحی و تجربهٔ کاربری.",
-      },
-      {
-        question: "اگر بعداً بخواهم ماژول جدیدی اضافه کنم چطور؟",
-        answer:
-          "راینو مقیاس‌پذیر است. ماژول‌های جدید (فرم‌ساز، محتوای بصری، دیدگاه‌ها و…) وقتی نیازشان دارید اضافه می‌شوند، بدون آنکه طراحی فعلی شما را تغییر دهند یا کل سایت را بازسازی کنید.",
-      },
-      {
-        question: "مالکیت کد با من است؟",
-        answer:
-          "بله. کد طراحی اختصاصی شما کاملاً مال شماست و تحویل می‌گیرید. زیرساخت و ماژول‌های راینو از طریق لایسنس در دسترس شما قرار می‌گیرند؛ شما مالک محصول نهایی هستید و به راحتی می‌توانید آن را هاست و نگهداری کنید.",
-      },
-    ],
+      { question: "طراحی سایت من واقعاً اختصاصی است؟", answer: null },
+      { question: "چرا هزینه از یک پروژهٔ کاملاً اختصاصی کمتر است؟", answer: null },
+      { question: "به‌روزرسانی‌ها چطور انجام می‌شود و سایتم را خراب نمی‌کند؟", answer: null },
+      { question: "آیا همهٔ ماژول‌ها الان آماده‌اند؟", answer: null },
+    ] as { question: string; answer: string | null }[],
   },
 
   cta: {
-    title: "آماده‌اید یک محصول دیجیتال متفاوت بسازید؟",
-    subtitle: "شماره موبایل بگذارید؛ رایگان مشاوره می‌دهیم.",
+    title: "محصول اختصاصی‌تان را، سریع‌تر و به‌صرفه‌تر شروع کنید.",
+    subtitle: "شماره‌تان را بگذارید؛ برای مشاورهٔ رایگان با شما تماس می‌گیریم.",
     form: {
+      label: "شمارهٔ تماس",
       placeholder: "۰۹۱۲ ۰۰۰ ۰۰۰۰",
       button: "درخواست تماس",
+      // Feedback strings (not part of the static Figma frame)
       successMessage: "درخواست شما ثبت شد. به‌زودی با شما تماس می‌گیریم.",
       errorMessage: "لطفاً یک شماره موبایل معتبر وارد کنید (۰۹XX XXX XXXX).",
     },
   },
 
   footer: {
-    description: "سایت و اپلیکیشن کاملاً اختصاصی، با سرعت و هزینهٔ یک راهکار آماده.",
+    description: "طراحی اختصاصی برای برند شما، روی زیرساخت آماده، امن و همیشه به‌روز راینو.",
+    tagline: "Rayno — Built to Evolve.",
+    // RTL order (rightmost first)
     sections: [
       {
-        title: "محصول",
+        title: "راینو",
         links: [
           { label: "چرا راینو", href: "#why-rayno" },
-          { label: "چه می‌شود ساخت", href: "#products" },
-          { label: "ماژول‌ها", href: "#modules" },
+          { label: "چطور کار می‌کند", href: "#how-it-works" },
           { label: "مقایسه", href: "#compare" },
         ],
       },
       {
-        title: "منابع",
+        title: "محصولات",
         links: [
-          { label: "مستندات", href: "/docs" },
-          { label: "راهنماها", href: "/guides" },
-          { label: "وبلاگ", href: "/blog" },
+          { label: "فروشگاه آنلاین", href: "#products" },
+          { label: "وب‌سایت شرکتی", href: "#products" },
+          { label: "اپلیکیشن", href: "#products" },
         ],
       },
       {
-        title: "شرکت",
+        title: "ارتباط",
         links: [
-          { label: "دربارهٔ ما", href: "/about" },
-          { label: "تماس", href: "/contact" },
-        ],
-      },
-      {
-        title: "قانونی",
-        links: [
-          { label: "شرایط استفاده", href: "/terms" },
-          { label: "حریم خصوصی", href: "/privacy" },
+          { label: "مشاورهٔ رایگان", href: "#cta" },
+          { label: "لیست انتظار", href: "#cta" },
+          { label: "تماس با ما", href: "#cta" },
         ],
       },
     ],
-    social: [
-      { name: "GitHub", href: "https://github.com/rayno", icon: "Github" },
-      { name: "Twitter", href: "https://twitter.com/rayno", icon: "Twitter" },
-    ],
-    copyright: "© ۱۴۰۵ راینو. تمامی حقوق محفوظ است.",
+    domain: "rayno.dev",
+    language: "فارسی · FA",
+    copyright: "© ۱۴۰۵ راینو. همهٔ حقوق محفوظ است.",
   },
 } as const;
 

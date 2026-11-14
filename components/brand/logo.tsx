@@ -1,32 +1,26 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { MaskIcon } from "@/components/ui/mask-icon";
 
 interface LogoProps {
   className?: string;
-  variant?: "default" | "icon";
+  /** "light" = white wordmark (dark backgrounds), "theme" = follows the theme */
+  tone?: "light" | "theme";
 }
 
-export function Logo({ className, variant = "default" }: LogoProps) {
-  if (variant === "icon") {
-    return (
-      <svg
-        className={cn("h-8 w-8", className)}
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="32" height="32" rx="8" fill="currentColor" />
-        <path
-          d="M10 10h5c3.314 0 6 2.686 6 6s-2.686 6-6 6h-1v-4h1c1.105 0 2-.895 2-2s-.895-2-2-2h-3v8H10V10z"
-          fill="white"
-        />
-      </svg>
-    );
-  }
-
+/** Rayno logo: mark (right) + wordmark (left) in RTL — Figma 1:210. */
+export function Logo({ className, tone = "light" }: LogoProps) {
   return (
-    <div className={cn("flex items-center gap-2", className)}>
-      <Logo variant="icon" />
-      <span className="text-xl font-bold">رینو</span>
-    </div>
+    <span className={cn("flex items-center gap-2.5", className)}>
+      <Image src="/assets/logo/logo-mark.svg" alt="" width={23} height={30} className="h-[30px] w-auto" priority />
+      {tone === "light" ? (
+        <Image src="/assets/logo/logo-wordmark.svg" alt="راینو" width={60} height={24} className="h-6 w-auto" priority />
+      ) : (
+        <>
+          <MaskIcon name="footer-logo-wordmark" size={60} className="h-6 text-text-primary" />
+          <span className="sr-only">راینو</span>
+        </>
+      )}
+    </span>
   );
 }

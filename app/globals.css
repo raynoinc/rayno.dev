@@ -133,8 +133,12 @@
   --radius-3xl: 24px;
 }
 
-* {
-  border-color: var(--border);
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
 }
 
 body {
@@ -151,81 +155,45 @@ html {
   scroll-padding-top: 76px; /* Header height */
 }
 
-/* Animations from animations.md */
-@keyframes hero-title-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* =========================================================
+ * Hero motion — Figma 1:1053 «Motion spec · Hero v2» (animations.md)
+ * Entrance animations run once; drift / glow / float / flow loop.
+ * ========================================================= */
+@keyframes rayno-drift { from { transform: translate(0, 0); } to { transform: translate(-22px, -22px); } }
+@keyframes rayno-glow {
+  0%, 100% { opacity: 0.32; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.08); }
 }
+@keyframes rayno-land { from { transform: translateY(-70px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes rayno-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes rayno-flow { to { stroke-dashoffset: -40; } }
+@keyframes rayno-plate { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes rayno-fade-up { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
 
-@keyframes hero-connector-dash {
-  from {
-    stroke-dashoffset: 10;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
+.hero-drift { animation: rayno-drift 9s linear infinite alternate; will-change: transform; }
+.hero-glow { animation: rayno-glow 6s ease-in-out infinite; }
+.hero-land { animation: rayno-land 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both; }
+.hero-float { animation: rayno-float 5s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1s); }
+.hero-flow { animation: rayno-flow 1.6s linear infinite; }
+.hero-plate { animation: rayno-plate 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.hero-fade { animation: rayno-fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s) both; }
 
-@keyframes module-card-rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Hero visual stage: exact 1120×560 Figma composition, scaled on tablet */
+.hero-stage { --s: 1; width: 100%; height: calc(560px * var(--s)); }
+.hero-stage-inner { transform: translateX(-50%) scale(var(--s)); transform-origin: top center; }
+@media (max-width: 1199px) { .hero-stage { --s: 0.8; } }
+@media (max-width: 959px) { .hero-stage { --s: 0.64; } }
 
-@keyframes strata-drift {
-  0%, 100% {
-    transform: translateX(0) translateY(0);
-  }
-  33% {
-    transform: translateX(-1.5%) translateY(0.8%);
-  }
-  66% {
-    transform: translateX(1.5%) translateY(-0.8%);
-  }
-}
-
-.animate-hero-title {
-  animation: hero-title-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-}
-
-.animate-hero-connector {
-  animation: hero-connector-dash 2s ease-in-out infinite;
-}
-
-.animate-module-rise {
-  animation: module-card-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-}
-
-.animate-strata-drift {
-  animation: strata-drift 80s ease-in-out infinite;
-}
-
-/* Animation delays for staggered entry */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
-
-/* Respect prefers-reduced-motion */
+/* Respect prefers-reduced-motion: show the final assembled state (keyframe 1.4s) */
 @media (prefers-reduced-motion: reduce) {
+  .hero-anim,
+  .hero-anim * {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 
@@ -240,34 +208,21 @@ html {
   outline-offset: 2px;
 }
 
-/* LTR override for Latin text, code blocks, and English snippets */
+/* LTR isolation for Latin snippets (eyebrows, code, domains) inside the RTL page */
 .ltr,
 pre,
 code,
 [dir="ltr"] {
   direction: ltr;
-  text-align: left;
   unicode-bidi: isolate;
 }
 
-/* Container utility (max-width 1200px with 120px padding per README) */
+/* Page container: 1200px content (Figma 1440 frame with 120px side padding) */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: calc(1200px + 2 * 24px);
   margin-inline: auto;
-  padding-inline: 120px;
-}
-
-@media (max-width: 1024px) {
-  .container {
-    padding-inline: 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-inline: 32px;
-  }
+  padding-inline: 24px;
 }
 
 @media (max-width: 640px) {
@@ -276,16 +231,4 @@ code,
   }
 }
 
-/* Fixed dark sections (Hero, Developers, CTA) */
-.section-fixed-dark {
-  background: var(--fixed-dark-bg);
-  color: var(--fixed-dark-text);
-}
 
-/* Gradient text for hero title */
-.gradient-text {
-  background: linear-gradient(180deg, #8ab4ff 0%, #0d6eff 60%, #4d8eff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}

@@ -35,13 +35,14 @@ export function Sheet({ open, onOpenChange, children }: SheetProps) {
       {/* Sheet */}
       <div
         className={cn(
-          "fixed right-0 top-0 z-50 h-full w-3/4 max-w-sm border-l bg-background p-6 shadow-lg transition-transform duration-300 ease-in-out",
+          open ? "visible" : "invisible",
+          "fixed right-0 top-0 z-50 h-full w-3/4 max-w-sm border-l border-border bg-surface p-6 text-text-primary shadow-lg transition-transform duration-300 ease-in-out",
           open ? "translate-x-0" : "translate-x-full"
         )}
       >
         <button
           onClick={() => onOpenChange(false)}
-          className="absolute left-4 top-4 rounded-lg p-2 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="absolute left-4 top-4 rounded-lg p-2 hover:bg-surface-2"
         >
           <X className="h-5 w-5" />
           <span className="sr-only">بستن</span>

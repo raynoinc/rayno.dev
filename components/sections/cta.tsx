@@ -1,41 +1,74 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
-import { content } from "@/lib/content";
-import { Button } from "@/components/ui/button";
 
+import { useState, type FormEvent } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { content } from "@/lib/content";
+import { validateIranianMobile } from "@/lib/utils";
+
+type Status = "idle" | "loading" | "success" | "error";
+
+/** CTA (phone only) — Figma 1:970. Fixed dark card in both themes. */
 export function CTA() {
   const { cta } = content;
   const [phone, setPhone] = useState("");
-  const [status, setStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
-  
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (!validateIranianMobile(phone)) {
+      setStatus("error");
+      return;
+    }
     setStatus("loading");
-    await new Promise(r => setTimeout(r, 800));
-    setStatus("success");
-    setTimeout(() => { setStatus("idle"); setPhone(""); }, 2000);
-  };
-  
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone }),
+      });
+      setStatus(res.ok ? "success" : "error");
+      if (res.ok) setPhone("");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
-    <section id="cta" className="relative pb-28">
+    <section id="cta" className="relative bg-bg pb-20 md:pb-28">
       <div className="container">
-        <div className="section-fixed-dark relative overflow-hidden rounded-[28px] p-20 md:p-20 text-center">
-          <div className="absolute right-[200px] top-[160px] w-[800px] h-[420px] rounded-full bg-[#0d6eff] opacity-30 blur-[300px]" />
-          <div className="relative max-w-4xl mx-auto space-y-7">
-            <h2 className="text-[36px] md:text-[44px] font-extrabold text-white leading-tight">{cta.title}</h2>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto">{cta.subtitle}</p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
-              <div className="w-full sm:w-80 h-[50px] bg-white/[0.05] border border-[#2a3550] rounded-xl px-4 flex items-center justify-between">
-                <input type="tel" value={phone} onChange={e=>setPhone(e.target.value)} placeholder="۰۹۱۲ ۰۰۰ ۰۰۰۰" className="flex-1 bg-transparent text-white text-[15px] placeholder:text-white/40 outline-none" dir="rtl" />
-                <span className="text-sm text-white/60">شمارهٔ تماس</span>
-              </div>
-              <Button type="submit" disabled={status==="loading"} className="h-[50px] px-6 bg-gradient-to-b from-[#004de5] to-[#0d6eff] text-white text-[15px] font-semibold rounded-xl shadow-[0_8px_24px_-8px_rgba(13,110,255,0.6)]">
-                <Image src="/assets/icons/cta-arrow.svg" alt="" width={18} height={18} className="ml-2"/>
-                {status==="success"?"ارسال شد!":cta.form.button}
-              </Button>
-            </form>
-          </div>
+        <div className="relative flex flex-col items-center gap-5 overflow-hidden rounded-[28px] bg-fixed-dark-bg px-6 py-14 text-center sm:px-16 md:py-20">
+          <div aria-hidden className="pointer-events-none absolute top-[160px] left-1/2 ml-[-400px] h-[420px] w-[800px] rounded-[290px] bg-[#0d6eff] opacity-25 blur-[150px]" />
+          <h2 className="relative max-w-[780px] text-[30px] leading-[1.45] font-extrabold text-white md:text-[44px] md:leading-[63.8px]">{cta.title}</h2>
+          <p className="relative max-w-[640px] text-[16px] leading-[30px] text-[#d5dce8] md:text-[18px] md:leading-[34.2px]">{cta.subtitle}</p>
+
+          <form onSubmit={handleSubmit} noValidate className="relative flex w-full flex-col items-stretch justify-center gap-3 pt-4 sm:w-auto sm:flex-row">
+            <Button type="submit" disabled={status === "loading"}>
+              {cta.form.button}
+              <Image src="/assets/icons/cta-phone-arrow.svg" alt="" width={18} height={18} />
+            </Button>
+            <label className="flex h-[50px] items-center justify-between gap-3 rounded-xl border border-[#2a3550] bg-white/5 px-4 focus-within:border-[#4d8eff] sm:w-[320px]">
+              <span className="shrink-0 text-[14px] text-[#c3ccdb]">{cta.form.label}</span>
+              <input
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                dir="ltr"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (status !== "idle" && status !== "loading") setStatus("idle");
+                }}
+                placeholder={cta.form.placeholder}
+                aria-invalid={status === "error"}
+                className="w-full min-w-0 bg-transparent text-left text-[15px] text-white outline-none placeholder:text-[#b8c2d3]"
+              />
+            </label>
+          </form>
+          <p aria-live="polite" className="absolute inset-x-6 bottom-5 text-[13px] text-[#c3ccdb] md:bottom-8">
+            {status === "success" && cta.form.successMessage}
+            {status === "error" && <span className="text-[#fca5a5]">{cta.form.errorMessage}</span>}
+          </p>
         </div>
       </div>
     </section>

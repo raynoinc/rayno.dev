@@ -1,35 +1,56 @@
-"use client";
 import Image from "next/image";
 import { content } from "@/lib/content";
+import { Strata } from "@/components/brand/strata";
+import { MaskIcon } from "@/components/ui/mask-icon";
+import { SectionHeader } from "@/components/ui/section-header";
+import { cn } from "@/lib/utils";
 
+/** Why Rayno — Figma 1:384. The first card («ECONOMICAL») is the brand-blue highlight card. */
 export function WhyRayno() {
   const { whyRayno } = content;
   return (
-    <section id="why-rayno" className="relative py-28 bg-bg">
+    <section id="why-rayno" className="relative bg-bg py-20 md:py-28">
       <div className="container">
-        <div className="text-center mb-14">
-          <div className="text-xs font-semibold text-brand-fg tracking-wide mb-3" dir="ltr">{whyRayno.eyebrow}</div>
-          <h2 className="text-[36px] md:text-[44px] font-extrabold text-text-primary mb-3 leading-tight">{whyRayno.title}</h2>
-          <p className="text-lg text-text-secondary max-w-3xl mx-auto">{whyRayno.subtitle}</p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <SectionHeader eyebrow={whyRayno.eyebrow} title={whyRayno.title} subtitle={whyRayno.subtitle} />
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {whyRayno.features.map((item, i) => {
-            const isDark = i === 0;
+            const highlight = i === 0;
             return (
-              <div key={i} className={`relative rounded-2xl p-[30px] ${isDark ? "section-fixed-dark border border-[#8ab4ff]/25 overflow-hidden" : "bg-surface border border-border"}`}>
-                {isDark && (
-                  <div className="absolute inset-0 -z-10">
-                    <Image src="/assets/strata/light/econ_560x420.svg" alt="" width={560} height={420} className="absolute -left-[199px] -top-[139px] w-[560px] h-[420px] dark:hidden" />
-                    <Image src="/assets/strata/dark/econ_560x420.svg" alt="" width={560} height={420} className="absolute -left-[199px] -top-[139px] w-[560px] h-[420px] hidden dark:block" />
-                  </div>
+              <article
+                key={item.eyebrow}
+                className={cn(
+                  "relative flex flex-col items-start gap-2.5 overflow-hidden rounded-2xl border p-[30px]",
+                  highlight
+                    ? "border-transparent bg-[linear-gradient(167deg,#004de5_8%,#0d6eff_92%)]"
+                    : "border-border bg-surface"
                 )}
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-[10px] ${isDark ? "bg-white/[0.14] border border-white/[0.25]" : "bg-brand-tint border border-border-brand"}`}>
-                  <Image src={`/assets/icons/${item.icon}.svg`} alt="" width={22} height={22} />
-                </div>
-                <div className={`text-[11.5px] font-semibold tracking-wide mb-2 ${isDark ? "text-white/90" : "text-text-muted"}`} dir="ltr">{item.eyebrow}</div>
-                <h3 className={`text-[19px] font-bold mb-2 ${isDark ? "text-white" : "text-text-primary"}`}>{item.title}</h3>
-                <p className={`text-[14.5px] leading-relaxed ${isDark ? "text-white/80" : "text-text-secondary"}`}>{item.description}</p>
-              </div>
+              >
+                {highlight && <Strata name="econ_560x420" className="top-[-140px] left-[-200px] h-[420px] w-[560px] opacity-60" />}
+                <span
+                  className={cn(
+                    "relative flex size-11 items-center justify-center rounded-xl border",
+                    highlight ? "border-white/25 bg-white/14" : "border-border-brand bg-brand-tint"
+                  )}
+                >
+                  {highlight ? (
+                    <Image src={`/assets/icons/${item.icon}.svg`} alt="" width={22} height={22} />
+                  ) : (
+                    <MaskIcon name={item.icon} size={22} className="text-brand-fg" />
+                  )}
+                </span>
+                <p
+                  dir="ltr"
+                  className={cn("relative text-[11.5px] leading-[14px] font-semibold tracking-[0.92px]", highlight ? "text-[#b9d1ff]" : "text-brand-fg")}
+                >
+                  {item.eyebrow}
+                </p>
+                <h3 className={cn("relative pt-2 text-[19px] leading-[30px] font-bold", highlight ? "text-white" : "text-text-primary")}>
+                  {item.title}
+                </h3>
+                <p className={cn("relative text-[14.5px] leading-[26.8px]", highlight ? "text-[#dce8ff]" : "text-text-secondary")}>
+                  {item.description}
+                </p>
+              </article>
             );
           })}
         </div>

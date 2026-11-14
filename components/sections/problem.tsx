@@ -1,17 +1,50 @@
-"use client";
 import Image from "next/image";
+import { ButtonLink } from "@/components/ui/button";
 import { content } from "@/lib/content";
-import { Button } from "@/components/ui/button";
+import { Strata } from "@/components/brand/strata";
+import { MaskIcon } from "@/components/ui/mask-icon";
+import { SectionHeader } from "@/components/ui/section-header";
 
+/** Problem — Figma 1:221 */
 export function Problem() {
   const { problem } = content;
   return (
-    <section id="problem" className="relative py-20 md:py-32 bg-bg">
-      <div className="absolute inset-0 -z-10"><Image src="/assets/strata/light/light_1200x520.svg" alt="" width={1200} height={520} className="w-full max-w-[1200px] mx-auto dark:hidden" /><Image src="/assets/strata/dark/light_1200x520.svg" alt="" width={1200} height={520} className="w-full max-w-[1200px] mx-auto hidden dark:block" /></div>
-      <div className="container">
-        <div className="text-center mb-16"><div className="text-xs font-semibold text-brand-fg tracking-wide mb-4" dir="ltr">{problem.eyebrow}</div><p className="text-base text-text-secondary mb-2">{problem.quoteStart}</p><p className="text-base font-bold text-text-primary mb-6">{problem.quote}</p><h2 className="text-[36px] md:text-[44px] font-extrabold text-text-primary mb-4 leading-tight">{problem.title}</h2><p className="text-lg text-text-secondary max-w-3xl mx-auto">{problem.subtitle}</p></div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">{problem.issues.map((issue,i)=>(<div key={i} className="bg-surface border border-border rounded-2xl p-6"><div className="w-11 h-11 bg-danger-tint rounded-xl flex items-center justify-center mb-4"><Image src={`/assets/icons/${issue.icon}.svg`} alt="" width={22} height={22}/></div><h3 className="text-lg font-semibold text-text-primary mb-2">{issue.title}</h3><p className="text-sm text-text-secondary leading-relaxed">{issue.description}</p></div>))}</div>
-        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#0f1a30] to-[#0b1424] border border-[#8ab4ff]/25 p-8 text-center"><div className="absolute inset-0 -z-10"><Image src="/assets/strata/light/banner_600x360.svg" alt="" width={600} height={360} className="w-full max-w-[600px] mx-auto dark:hidden"/><Image src="/assets/strata/dark/banner_600x360.svg" alt="" width={600} height={360} className="w-full max-w-[600px] mx-auto hidden dark:block"/></div><p className="text-lg font-semibold text-white max-w-2xl mx-auto mb-6"><span>{problem.cta.text[0]}</span><span className="text-[#8ab4ff]">{problem.cta.text[1]}</span><span>{problem.cta.text[2]}</span></p><Button className="bg-white text-[#0b1220] hover:bg-white/90 h-12 px-6 font-semibold"><Image src="/assets/icons/problem-arrow-see-how.svg" alt="" width={18} height={18} className="ml-2"/>{problem.cta.button}</Button></div>
+    <section id="problem" className="relative overflow-hidden bg-bg py-20 md:py-28">
+      <Strata name="light_1200x520" themed className="top-0 left-1/2 h-[520px] w-[1200px] -translate-x-1/2" />
+      <div className="container relative">
+        <SectionHeader eyebrow={problem.eyebrow} title={problem.title} subtitle={problem.subtitle}>
+          {/* quote pill */}
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-[14px] border border-border bg-surface-2 px-[18px] py-2.5 text-[15px] leading-6 md:text-[16px]">
+            <span className="text-text-secondary">{problem.quoteStart}</span>
+            <span className="font-bold text-text-primary">{problem.quote}</span>
+          </div>
+        </SectionHeader>
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {problem.issues.map((issue) => (
+            <article key={issue.title} className="flex flex-col items-start gap-2.5 rounded-2xl border border-border bg-surface p-7">
+              <span className="flex size-11 items-center justify-center rounded-xl border border-danger-border bg-danger-tint">
+                <MaskIcon name={issue.icon} size={22} className="text-danger" />
+              </span>
+              <h3 className="pt-1.5 text-[18px] leading-7 font-semibold text-text-primary">{issue.title}</h3>
+              <p className="text-[14px] leading-[25.9px] text-text-secondary">{issue.description}</p>
+            </article>
+          ))}
+        </div>
+
+        {/* dark banner 1:291 */}
+        <div className="relative mt-10 flex flex-col items-center gap-5 overflow-hidden rounded-2xl bg-fixed-dark-bg px-7 py-6 md:flex-row md:justify-between lg:h-[98px]">
+          <Strata name="banner_600x360" className="top-[-120px] left-[-60px] h-[360px] w-[600px]" />
+          <p className="relative text-center text-[16px] leading-[28px] font-semibold text-white md:text-start md:text-[18px] md:leading-[30.6px]">
+            {problem.cta.text[0]}
+            <span className="text-[#8ab4ff]">{problem.cta.text[1]}</span>
+            {problem.cta.text[2]}
+          </p>
+          <ButtonLink href="#how-it-works" variant="white" className="relative">
+            {problem.cta.button}
+            <Image src="/assets/icons/problem-arrow-see-how.svg" alt="" width={18} height={18} />
+          </ButtonLink>
+        </div>
       </div>
     </section>
   );

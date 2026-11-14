@@ -1,101 +1,94 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { Moon, Sun, Menu } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import { Sheet } from "@/components/ui/sheet";
+import { Logo } from "@/components/brand/logo";
+import { ButtonLink } from "@/components/ui/button";
 import { content } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
+/** Header — Figma 1:193 (sits on the fixed-dark hero, 76px, bottom border white/8). */
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [scrolled, setScrolled] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[76px] section-fixed-dark border-b border-[#1c2840]">
+    <>
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 h-[76px] border-b border-white/8 text-white transition-[background-color,backdrop-filter] duration-300",
+        scrolled ? "bg-fixed-dark-bg/85 backdrop-blur-md" : "bg-transparent"
+      )}
+    >
       <div className="container flex h-full items-center justify-between">
-        {/* Logo */}
-        <a href="#hero" className="flex items-center gap-2">
-          <Image
-            src="/assets/logo/logo-wordmark.svg"
-            alt="راینو"
-            width={60}
-            height={24}
-            className="h-6 w-auto"
-          />
-          <Image
-            src="/assets/logo/logo-mark.svg"
-            alt=""
-            width={23}
-            height={30}
-            className="h-[30px] w-auto"
-          />
+        <a href="#hero" aria-label="راینو">
+          <Logo />
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden items-center gap-8 lg:flex">
           {content.header.nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="px-4 py-2 text-[14px] font-medium text-[#d0d9e8] hover:text-white transition-colors rounded-lg hover:bg-white/5"
+              className="text-[14px] leading-[22px] font-medium text-fixed-dark-text-muted transition-colors hover:text-white"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="text-[#d0d9e8] hover:text-white hover:bg-white/5"
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="تغییر تم"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            className="relative flex size-10 items-center justify-center rounded-xl text-fixed-dark-text-muted transition hover:bg-white/5 hover:text-white"
           >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
-
-          <Button
-            className="hidden md:flex bg-white text-[#0b1220] hover:bg-white/90 h-[40px] px-4 text-[15px] font-semibold"
-            size="default"
-          >
+            <Sun className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+            <Moon className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+          </button>
+          <ButtonLink href="#cta" variant="white" className="max-sm:hidden">
             {content.header.cta}
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-[#d0d9e8] hover:text-white"
+          </ButtonLink>
+          <button
+            type="button"
+            aria-label="منو"
+            className="flex size-10 items-center justify-center rounded-xl text-fixed-dark-text-muted hover:bg-white/5 hover:text-white lg:hidden"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Menu className="h-5 w-5" />
-          </Button>
+            <Menu className="size-5" />
+          </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile Navigation */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <nav className="flex flex-col gap-1">
           {content.header.nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="block px-4 py-3 text-[14px] font-medium text-[#d0d9e8] hover:text-white transition-colors rounded-lg hover:bg-white/5"
+              className="block rounded-lg px-4 py-3 text-[15px] font-medium text-text-primary transition-colors hover:bg-surface-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               {item.label}
             </a>
           ))}
-          <div className="mt-4">
-            <Button className="w-full bg-white text-[#0b1220]" size="lg">
-              {content.header.cta}
-            </Button>
-          </div>
+          <ButtonLink href="#cta" onClick={() => setMobileMenuOpen(false)} className="mt-4">
+            {content.header.cta}
+          </ButtonLink>
         </nav>
       </Sheet>
-    </header>
+    </>
   );
 }

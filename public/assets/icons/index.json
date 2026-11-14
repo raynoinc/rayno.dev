@@ -1,0 +1,538 @@
+[
+ {
+  "nodeId": "1:63",
+  "section": "1:41",
+  "file": "assets/icons/arrow-left-cta.svg",
+  "w": 18,
+  "h": 18,
+  "context": "درخواست مشاورهٔ رایگان"
+ },
+ {
+  "nodeId": "1:70",
+  "section": "1:41",
+  "file": "assets/icons/hero-check-fast.svg",
+  "w": 16,
+  "h": 16,
+  "context": "راه‌اندازی سریع"
+ },
+ {
+  "nodeId": "1:74",
+  "section": "1:41",
+  "file": "assets/icons/hero-check-cost.svg",
+  "w": 16,
+  "h": 16,
+  "context": "هزینهٔ منطقی و شفاف"
+ },
+ {
+  "nodeId": "1:78",
+  "section": "1:41",
+  "file": "assets/icons/hero-check-uptodate.svg",
+  "w": 16,
+  "h": 16,
+  "context": "همیشه به‌روز"
+ },
+ {
+  "nodeId": "1:82",
+  "section": "1:41",
+  "file": "assets/icons/hero-check-bespoke.svg",
+  "w": 16,
+  "h": 16,
+  "context": "کد اختصاصی، نه قالب آماده"
+ },
+ {
+  "nodeId": "1:86",
+  "section": "1:41",
+  "file": "assets/icons/hero-connector-paths.svg",
+  "w": 1120,
+  "h": 560,
+  "context": ""
+ },
+ {
+  "nodeId": "1:126",
+  "section": "1:41",
+  "file": "assets/icons/hero-module-forms.svg",
+  "w": 18,
+  "h": 18,
+  "context": ""
+ },
+ {
+  "nodeId": "1:139",
+  "section": "1:41",
+  "file": "assets/icons/hero-module-users.svg",
+  "w": 18,
+  "h": 18,
+  "context": ""
+ },
+ {
+  "nodeId": "1:151",
+  "section": "1:41",
+  "file": "assets/icons/hero-module-admin.svg",
+  "w": 18,
+  "h": 18,
+  "context": ""
+ },
+ {
+  "nodeId": "1:163",
+  "section": "1:41",
+  "file": "assets/icons/hero-module-content.svg",
+  "w": 18,
+  "h": 18,
+  "context": ""
+ },
+ {
+  "nodeId": "1:175",
+  "section": "1:41",
+  "file": "assets/icons/hero-module-store.svg",
+  "w": 18,
+  "h": 18,
+  "context": ""
+ },
+ {
+  "nodeId": "1:189",
+  "section": "1:41",
+  "file": "assets/icons/hero-plate-mark.svg",
+  "w": 21.7,
+  "h": 28,
+  "context": "بک‌اند، پنل مدیریت و ماژول‌های آمادهٔ را"
+ },
+ {
+  "nodeId": "1:211",
+  "section": "1:41",
+  "file": "assets/icons/logo-wordmark.svg",
+  "w": 59.7,
+  "h": 24,
+  "context": ""
+ },
+ {
+  "nodeId": "1:217",
+  "section": "1:41",
+  "file": "assets/icons/logo-mark.svg",
+  "w": 23.2,
+  "h": 30,
+  "context": ""
+ },
+ {
+  "nodeId": "1:238",
+  "section": "1:221",
+  "file": "assets/icons/problem-plugin-conflict.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:246",
+  "section": "1:221",
+  "file": "assets/icons/problem-security-holes.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:255",
+  "section": "1:221",
+  "file": "assets/icons/problem-slow.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:264",
+  "section": "1:221",
+  "file": "assets/icons/problem-lookalike.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:273",
+  "section": "1:221",
+  "file": "assets/icons/problem-breaking-update.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:284",
+  "section": "1:221",
+  "file": "assets/icons/problem-hard-customize.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:293",
+  "section": "1:221",
+  "file": "assets/icons/problem-arrow-see-how.svg",
+  "w": 18,
+  "h": 18,
+  "context": "ببینید چطور"
+ },
+ {
+  "nodeId": "1:396",
+  "section": "1:384",
+  "file": "assets/icons/why-economical.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:408",
+  "section": "1:384",
+  "file": "assets/icons/why-bespoke-code.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:419",
+  "section": "1:384",
+  "file": "assets/icons/why-always-up-to-date.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:432",
+  "section": "1:384",
+  "file": "assets/icons/why-fast-launch.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:445",
+  "section": "1:384",
+  "file": "assets/icons/why-secure.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:456",
+  "section": "1:384",
+  "file": "assets/icons/why-scalable.svg",
+  "w": 22,
+  "h": 22,
+  "context": ""
+ },
+ {
+  "nodeId": "1:607",
+  "section": "1:580",
+  "file": "assets/icons/compare-dash.svg",
+  "w": 13,
+  "h": 13,
+  "context": "ارزان در شروع، پرهزینه در ادامه"
+ },
+ {
+  "nodeId": "1:612",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "بسیار بالا"
+ },
+ {
+  "nodeId": "1:618",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "منطقی و قابل پیش‌بینی"
+ },
+ {
+  "nodeId": "1:626",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "سریع"
+ },
+ {
+  "nodeId": "1:631",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "چندین ماه"
+ },
+ {
+  "nodeId": "1:637",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "سریع؛ زیرساخت از قبل آماده است"
+ },
+ {
+  "nodeId": "1:645",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "شبیه هزاران سایت دیگر"
+ },
+ {
+  "nodeId": "1:651",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "کاملاً اختصاصی"
+ },
+ {
+  "nodeId": "1:656",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "کاملاً اختصاصی"
+ },
+ {
+  "nodeId": "1:664",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "وابسته به ده‌ها افزونهٔ ناهمگون"
+ },
+ {
+  "nodeId": "1:670",
+  "section": "1:580",
+  "file": "assets/icons/compare-dash.svg",
+  "w": 13,
+  "h": 13,
+  "context": "وابسته به تیم سازنده"
+ },
+ {
+  "nodeId": "1:675",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "ماژول‌های استاندارد و نگهداری‌شده"
+ },
+ {
+  "nodeId": "1:683",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "آسیب‌پذیر از راه قالب و افزونه‌ها"
+ },
+ {
+  "nodeId": "1:689",
+  "section": "1:580",
+  "file": "assets/icons/compare-dash.svg",
+  "w": 13,
+  "h": 13,
+  "context": "بسته به کیفیت تیم"
+ },
+ {
+  "nodeId": "1:694",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "امنیت در هسته: ورود، نقش‌ها و دسترسی‌ها"
+ },
+ {
+  "nodeId": "1:702",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "ممکن است سایت را بشکند"
+ },
+ {
+  "nodeId": "1:708",
+  "section": "1:580",
+  "file": "assets/icons/compare-x.svg",
+  "w": 13,
+  "h": 13,
+  "context": "دستی و پرهزینه"
+ },
+ {
+  "nodeId": "1:714",
+  "section": "1:580",
+  "file": "assets/icons/compare-check.svg",
+  "w": 13,
+  "h": 13,
+  "context": "مداوم، بدون دست‌زدن به طراحی شما"
+ },
+ {
+  "nodeId": "1:737",
+  "section": "1:716",
+  "file": "assets/icons/module-users-auth.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:752",
+  "section": "1:716",
+  "file": "assets/icons/module-roles.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:765",
+  "section": "1:716",
+  "file": "assets/icons/module-settings-installer.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:780",
+  "section": "1:716",
+  "file": "assets/icons/module-admin-panel.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:795",
+  "section": "1:716",
+  "file": "assets/icons/module-store.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:809",
+  "section": "1:716",
+  "file": "assets/icons/module-cms.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:824",
+  "section": "1:716",
+  "file": "assets/icons/module-visual-content.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:838",
+  "section": "1:716",
+  "file": "assets/icons/module-form-builder.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:854",
+  "section": "1:716",
+  "file": "assets/icons/module-comments.svg",
+  "w": 19,
+  "h": 19,
+  "context": ""
+ },
+ {
+  "nodeId": "1:888",
+  "section": "1:872",
+  "file": "assets/icons/dev-headless-api.svg",
+  "w": 18,
+  "h": 18,
+  "context": "هدلس و API-محور"
+ },
+ {
+  "nodeId": "1:896",
+  "section": "1:872",
+  "file": "assets/icons/dev-modular.svg",
+  "w": 18,
+  "h": 18,
+  "context": "ماژولار"
+ },
+ {
+  "nodeId": "1:904",
+  "section": "1:872",
+  "file": "assets/icons/dev-security.svg",
+  "w": 18,
+  "h": 18,
+  "context": "امنیت و دسترسی آماده"
+ },
+ {
+  "nodeId": "1:912",
+  "section": "1:872",
+  "file": "assets/icons/dev-one-base.svg",
+  "w": 18,
+  "h": 18,
+  "context": "یک پایه، چندین پروژه"
+ },
+ {
+  "nodeId": "1:941",
+  "section": "1:930",
+  "file": "assets/icons/faq-minus.svg",
+  "w": 20,
+  "h": 20,
+  "context": "هدلس یعنی چه و چه فرقی با وردپرس دارد؟"
+ },
+ {
+  "nodeId": "1:948",
+  "section": "1:930",
+  "file": "assets/icons/faq-plus.svg",
+  "w": 20,
+  "h": 20,
+  "context": "طراحی سایت من واقعاً اختصاصی است؟"
+ },
+ {
+  "nodeId": "1:954",
+  "section": "1:930",
+  "file": "assets/icons/faq-plus.svg",
+  "w": 20,
+  "h": 20,
+  "context": "چرا هزینه از یک پروژهٔ کاملاً اختصاصی کم"
+ },
+ {
+  "nodeId": "1:960",
+  "section": "1:930",
+  "file": "assets/icons/faq-plus.svg",
+  "w": 20,
+  "h": 20,
+  "context": "به‌روزرسانی‌ها چطور انجام می‌شود و سایتم"
+ },
+ {
+  "nodeId": "1:966",
+  "section": "1:930",
+  "file": "assets/icons/faq-plus.svg",
+  "w": 20,
+  "h": 20,
+  "context": "آیا همهٔ ماژول‌ها الان آماده‌اند؟"
+ },
+ {
+  "nodeId": "1:983",
+  "section": "1:970",
+  "file": "assets/icons/cta-phone-arrow.svg",
+  "w": 18,
+  "h": 18,
+  "context": "درخواست تماس"
+ },
+ {
+  "nodeId": "1:1025",
+  "section": "1:991",
+  "file": "assets/icons/footer-logo-wordmark.svg",
+  "w": 59.7,
+  "h": 24,
+  "context": ""
+ },
+ {
+  "nodeId": "1:1031",
+  "section": "1:991",
+  "file": "assets/icons/footer-logo-mark.svg",
+  "w": 23.2,
+  "h": 30,
+  "context": ""
+ },
+ {
+  "nodeId": "1:1047",
+  "section": "1:991",
+  "file": "assets/icons/footer-globe.svg",
+  "w": 12.4,
+  "h": 16,
+  "context": ""
+ }
+]

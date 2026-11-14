@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+/* 
+ * Rayno Theme Configuration
+ * From tokens.json (Figma variable collection "Rayno / Theme")
+ * 29 color variables with Light and Dark modes
+ */
+
+:root {
+  /* Light Theme Colors */
+  --bg: #ffffff;
+  --bg-alt: #fbfcfe;
+  --surface: #ffffff;
+  --surface-2: #f5f7fb;
+  --surface-3: #edf0f6;
+  --brand-tint: #eef4ff;
+  --brand-tint-2: #dce8ff;
+  --border: #e1e6ef;
+  --border-subtle: #edf0f6;
+  --border-brand: #dce8ff;
+  --border-brand-2: #b9d1ff;
+  --text-primary: #0b1220;
+  --text-secondary: #4a5468;
+  --text-muted: #667189;
+  --text-body: #2a3550;
+  --brand-fg: #004de5;
+  --brand-fg-strong: #003db8;
+  --danger: #dc2626;
+  --danger-tint: #fdecec;
+  --danger-border: #f9d0d0;
+  --warning: #b45309;
+  --warning-tint: #fdf3e2;
+  --success: #15803d;
+  --success-tint: #e8f7ee;
+  --violet: #7c3aed;
+  --violet-tint: #f3eeff;
+  --brand-blue: #0d6eff;
+  --brand-cyan: #22d3ee;
+  --brand-violet: #8b5cf6;
+  
+  /* Fixed Dark Palette (for Hero, Developers, CTA) */
+  --fixed-dark-bg: #060b16;
+  --fixed-dark-bg-card: #0b1220;
+  --fixed-dark-text: #ffffff;
+  --fixed-dark-text-muted: #d0d9e8;
+  --fixed-dark-text-secondary: #c7cfdd;
+  --fixed-dark-border: #1c2840;
+}
+
+.dark {
+  /* Dark Theme Colors */
+  --bg: #0a0f1a;
+  --bg-alt: #0e1524;
+  --surface: #121b2d;
+  --surface-2: #172236;
+  --surface-3: #1b2740;
+  --brand-tint: #14274d;
+  --brand-tint-2: #183463;
+  --border: #24314a;
+  --border-subtle: #1c2840;
+  --border-brand: #26437a;
+  --border-brand-2: #335796;
+  --text-primary: #f1f5fb;
+  --text-secondary: #b4bfd1;
+  --text-muted: #9aa6bb;
+  --text-body: #c3ccdb;
+  --brand-fg: #6ea0ff;
+  --brand-fg-strong: #8ab4ff;
+  --danger: #f87171;
+  --danger-tint: #3b1a22;
+  --danger-border: #5c2632;
+  --warning: #fbbf24;
+  --warning-tint: #3a2a12;
+  --success: #4ade80;
+  --success-tint: #10301f;
+  --violet: #a78bfa;
+  --violet-tint: #271b47;
+  --brand-blue: #0d6eff;
+  --brand-cyan: #22d3ee;
+  --brand-violet: #8b5cf6;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-tint-2: var(--brand-tint-2);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-brand: var(--border-brand);
+  --color-border-brand-2: var(--border-brand-2);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-body: var(--text-body);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-fg-strong: var(--brand-fg-strong);
+  --color-danger: var(--danger);
+  --color-danger-tint: var(--danger-tint);
+  --color-danger-border: var(--danger-border);
+  --color-warning: var(--warning);
+  --color-warning-tint: var(--warning-tint);
+  --color-success: var(--success);
+  --color-success-tint: var(--success-tint);
+  --color-violet: var(--violet);
+  --color-violet-tint: var(--violet-tint);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-violet: var(--brand-violet);
+  
+  /* Fixed dark palette for specific sections */
+  --color-fixed-dark-bg: var(--fixed-dark-bg);
+  --color-fixed-dark-bg-card: var(--fixed-dark-bg-card);
+  --color-fixed-dark-text: var(--fixed-dark-text);
+  --color-fixed-dark-text-muted: var(--fixed-dark-text-muted);
+  --color-fixed-dark-text-secondary: var(--fixed-dark-text-secondary);
+  --color-fixed-dark-border: var(--fixed-dark-border);
+  
+  /* Typography - IRANYekanX for entire project */
+  --font-sans: var(--font-iranyekanx), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Cousine", "Courier New", monospace;
+  
+  /* Radii from tokens.json */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* Smooth scrolling with offset for fixed header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px; /* Header height */
+}
+
+/* Animations from animations.md */
+@keyframes hero-title-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-connector-dash {
+  from {
+    stroke-dashoffset: 10;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes module-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes strata-drift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  33% {
+    transform: translateX(-1.5%) translateY(0.8%);
+  }
+  66% {
+    transform: translateX(1.5%) translateY(-0.8%);
+  }
+}
+
+.animate-hero-title {
+  animation: hero-title-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.animate-hero-connector {
+  animation: hero-connector-dash 2s ease-in-out infinite;
+}
+
+.animate-module-rise {
+  animation: module-card-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.animate-strata-drift {
+  animation: strata-drift 80s ease-in-out infinite;
+}
+
+/* Animation delays for staggered entry */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--brand-fg);
+  outline-offset: 2px;
+}
+
+/* LTR override for Latin text, code blocks, and English snippets */
+.ltr,
+pre,
+code,
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+/* Container utility (max-width 1200px with 120px padding per README) */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 120px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 20px;
+  }
+}
+
+/* Fixed dark sections (Hero, Developers, CTA) */
+.section-fixed-dark {
+  background: var(--fixed-dark-bg);
+  color: var(--fixed-dark-text);
+}
+
+/* Gradient text for hero title */
+.gradient-text {
+  background: linear-gradient(180deg, #8ab4ff 0%, #0d6eff 60%, #4d8eff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

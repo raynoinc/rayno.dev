@@ -1,0 +1,62 @@
+{
+ "hero_1440x980": {
+  "usage": "Hero 1:41 full background (node 3:2) at x=0,y=40 inside the section, 1440x980",
+  "theme": "Not changed in dark frame — dark/light files are identical",
+  "light": "assets/strata/light/hero_1440x980.svg",
+  "dark": "assets/strata/dark/hero_1440x980.svg"
+ },
+ "dev_1440x980": {
+  "usage": "Developers 1:872 background (node 4:2) at x=0,y=-200",
+  "theme": "Not changed in dark frame — dark/light files are identical",
+  "light": "assets/strata/light/dev_1440x980.svg",
+  "dark": "assets/strata/dark/dev_1440x980.svg"
+ },
+ "prod_588x149": {
+  "usage": "Products 1:465 → header of the 2 wide cards 1:477, 1:501 (nodes 4:28, 4:39) at 0,0",
+  "theme": "THEMED: dark version = gradient stops #22D3EE/#3B82F6/#8B5CF6 and every stroke/fill-opacity ×1.35 (this is exactly what the Figma dark frame 8:31 does)",
+  "light": "assets/strata/light/prod_588x149.svg",
+  "dark": "assets/strata/dark/prod_588x149.svg"
+ },
+ "prod_385x149": {
+  "usage": "Products 1:465 → header of the 3 narrow cards 1:522, 1:539, 1:560 (nodes 4:50, 4:60, 4:70) at 0,0",
+  "theme": "THEMED: dark version = gradient stops #22D3EE/#3B82F6/#8B5CF6 and every stroke/fill-opacity ×1.35 (this is exactly what the Figma dark frame 8:31 does)",
+  "light": "assets/strata/light/prod_385x149.svg",
+  "dark": "assets/strata/dark/prod_385x149.svg"
+ },
+ "light_1200x520": {
+  "usage": "Problem 1:221 background (node 4:80) at x=120,y=0, 1200x520",
+  "theme": "THEMED: dark version = gradient stops #22D3EE/#3B82F6/#8B5CF6 and every stroke/fill-opacity ×1.35 (this is exactly what the Figma dark frame 8:31 does)",
+  "light": "assets/strata/light/light_1200x520.svg",
+  "dark": "assets/strata/dark/light_1200x520.svg"
+ },
+ "light_how_1200x520": {
+  "usage": "How it works 1:301 background (node 4:129) at x=-300,y=201",
+  "theme": "THEMED: dark version = gradient stops #22D3EE/#3B82F6/#8B5CF6 and every stroke/fill-opacity ×1.35 (this is exactly what the Figma dark frame 8:31 does)",
+  "light": "assets/strata/light/light_how_1200x520.svg",
+  "dark": "assets/strata/dark/light_how_1200x520.svg"
+ },
+ "banner_600x360": {
+  "usage": "Problem 1:221 → bottom dark banner card 1:291 (node 4:99) at x=-60,y=-120 (overflow clipped)",
+  "theme": "Not changed in dark frame — dark/light files are identical",
+  "light": "assets/strata/light/banner_600x360.svg",
+  "dark": "assets/strata/dark/banner_600x360.svg"
+ },
+ "card_dark_600x360": {
+  "usage": "How it works 1:301 → dark card 1:361 (node 4:114) at x=-40,y=-80 (clipped)",
+  "theme": "Not changed in dark frame — dark/light files are identical",
+  "light": "assets/strata/light/card_dark_600x360.svg",
+  "dark": "assets/strata/dark/card_dark_600x360.svg"
+ },
+ "mock_300x196": {
+  "usage": "Hero 1:41 → browser mock blue tile 1:108 (node 4:148) at 0,0; base gradient #2F86FF→#0B4FD9",
+  "theme": "Not changed in dark frame — dark/light files are identical",
+  "light": "assets/strata/light/mock_300x196.svg",
+  "dark": "assets/strata/dark/mock_300x196.svg"
+ },
+ "econ_560x420": {
+  "usage": "Why Rayno 1:384 → «ECONOMICAL» card 1:394 (node 4:163), layer index 0 (behind content), opacity 0.6, at x=-199,y=-139 (clipped)",
+  "theme": "Not changed in dark frame — dark/light files are identical",
+  "light": "assets/strata/light/econ_560x420.svg",
+  "dark": "assets/strata/dark/econ_560x420.svg"
+ }
+}

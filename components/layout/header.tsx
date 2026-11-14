@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
+import { flushSync } from "react-dom";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Sheet } from "@/components/ui/sheet";
@@ -14,6 +15,29 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+
+  /** Circular reveal: the new theme spreads from the toggle button (View Transitions API, with a plain fallback). */
+  const toggleTheme = (e: MouseEvent<HTMLButtonElement>) => {
+    const next = resolvedTheme === "dark" ? "light" : "dark";
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => { ready: Promise<void> };
+    };
+    if (!doc.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTheme(next);
+      return;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+    doc.startViewTransition(() => {
+      flushSync(() => setTheme(next));
+    });
+    const html = document.documentElement;
+    html.style.setProperty("--vt-x", `${x}px`);
+    html.style.setProperty("--vt-y", `${y}px`);
+    html.style.setProperty("--vt-r", `${radius + 160}px`);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -51,7 +75,7 @@ export function Header() {
           <button
             type="button"
             aria-label="تغییر تم"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            onClick={toggleTheme}
             className="relative flex size-10 items-center justify-center rounded-xl text-fixed-dark-text-muted transition hover:bg-white/5 hover:text-white"
           >
             <Sun className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />

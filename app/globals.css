@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* dark: follows the .dark class set by next-themes, not the OS preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* 
  * Rayno Theme Configuration
  * From tokens.json (Figma variable collection "Rayno / Theme")
@@ -145,6 +148,7 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   font-feature-settings: "rlig" 1, "calt" 1;
+  font-variation-settings: "dots" 1; /* IRANYekanX variable axis: dots style 1 */
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
 }
@@ -232,3 +236,26 @@ code,
 }
 
 
+
+/* Theme switch: soft-edged circular reveal from the toggle (Header sets --vt-x/--vt-y/--vt-r) */
+@property --vt-p {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  z-index: 1;
+  --vt-feather: 160px;
+  -webkit-mask-image: radial-gradient(circle at var(--vt-x, 50%) var(--vt-y, 0px), #000 calc(var(--vt-p) - var(--vt-feather)), transparent var(--vt-p));
+  mask-image: radial-gradient(circle at var(--vt-x, 50%) var(--vt-y, 0px), #000 calc(var(--vt-p) - var(--vt-feather)), transparent var(--vt-p));
+  animation: vt-reveal 700ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes vt-reveal {
+  from { --vt-p: 0px; }
+  to { --vt-p: var(--vt-r, 2400px); }
+}

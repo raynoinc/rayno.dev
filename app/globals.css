@@ -206,10 +206,14 @@ html {
   }
 }
 
-/* Focus visible styles for accessibility */
-*:focus-visible {
-  outline: 2px solid var(--brand-fg);
-  outline-offset: 2px;
+/* Focus visible styles for accessibility.
+ * Kept in the base layer so component utilities (e.g. `outline-none` on the CTA input,
+ * whose wrapper draws the ring) can override it; unlayered CSS would always win. */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--brand-fg);
+    outline-offset: 2px;
+  }
 }
 
 /* LTR isolation for Latin snippets (eyebrows, code, domains) inside the RTL page */

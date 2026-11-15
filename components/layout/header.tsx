@@ -10,7 +10,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { content } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-/** Header — Figma 1:193 (sits on the fixed-dark hero, 76px, bottom border white/8). */
+/** Header — Figma 1:193 (sits on the theme-aware hero, 76px, hairline bottom border). */
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -50,13 +50,13 @@ export function Header() {
     <>
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 h-[76px] border-b border-white/8 text-white transition-[background-color,backdrop-filter] duration-300",
-        scrolled ? "bg-fixed-dark-bg/85 backdrop-blur-md" : "bg-transparent"
+        "fixed inset-x-0 top-0 z-50 h-[76px] border-b border-[#0b1220]/[0.07] text-text-primary transition-[background-color,backdrop-filter] duration-300 dark:border-white/8 dark:text-white",
+        scrolled ? "bg-white/85 backdrop-blur-md dark:bg-fixed-dark-bg/85" : "bg-transparent"
       )}
     >
       <div className="container flex h-full items-center justify-between">
         <a href="#hero" aria-label="راینو">
-          <Logo />
+          <Logo tone="theme" />
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -64,7 +64,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-[14px] leading-[22px] font-medium text-fixed-dark-text-muted transition-colors hover:text-white"
+              className="text-[14px] leading-[22px] font-medium text-text-secondary transition-colors hover:text-text-primary dark:text-fixed-dark-text-muted dark:hover:text-white"
             >
               {item.label}
             </a>
@@ -76,18 +76,18 @@ export function Header() {
             type="button"
             aria-label="تغییر تم"
             onClick={toggleTheme}
-            className="relative flex size-10 items-center justify-center rounded-xl text-fixed-dark-text-muted transition hover:bg-white/5 hover:text-white"
+            className="relative flex size-10 items-center justify-center rounded-xl text-text-secondary transition hover:bg-[#0b1220]/5 hover:text-text-primary dark:text-fixed-dark-text-muted dark:hover:bg-white/5 dark:hover:text-white"
           >
             <Sun className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
             <Moon className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
           </button>
-          <ButtonLink href="#cta" variant="white" className="max-sm:hidden">
+          <ButtonLink href="#cta" variant="ink" className="max-sm:hidden">
             {content.header.cta}
           </ButtonLink>
           <button
             type="button"
             aria-label="منو"
-            className="flex size-10 items-center justify-center rounded-xl text-fixed-dark-text-muted hover:bg-white/5 hover:text-white lg:hidden"
+            className="flex size-10 items-center justify-center rounded-xl text-text-secondary hover:bg-[#0b1220]/5 hover:text-text-primary lg:hidden dark:text-fixed-dark-text-muted dark:hover:bg-white/5 dark:hover:text-white"
             onClick={() => setMobileMenuOpen(true)}
           >
             <Menu className="size-5" />

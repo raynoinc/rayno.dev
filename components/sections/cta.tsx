@@ -55,11 +55,7 @@ export function CTA() {
           <p className="relative max-w-[640px] text-[16px] leading-[30px] text-[#d5dce8] md:text-[18px] md:leading-[34.2px]">{cta.subtitle}</p>
 
           <form onSubmit={handleSubmit} noValidate className="relative flex w-full flex-col items-stretch justify-center gap-3 pt-4 sm:w-auto sm:flex-row">
-            <Button type="submit" disabled={status === "loading"}>
-              {cta.form.button}
-              <Image src="/assets/icons/cta-phone-arrow.svg" alt="" width={18} height={18} />
-            </Button>
-            {/* Single focus indicator: the wrapper shows the ring, the input itself has no outline. */}
+            {/* RTL: input first (right), button after it (left); stacked on mobile. Single focus indicator: only the wrapper shows the ring. */}
             <label
               className={cn(
                 "flex h-[50px] items-center justify-between gap-3 rounded-xl border bg-white/5 px-4 transition-[border-color,box-shadow] sm:w-[320px]",
@@ -87,6 +83,10 @@ export function CTA() {
                 className="w-full min-w-0 bg-transparent text-left text-[15px] text-white outline-none placeholder:text-[#b8c2d3] focus:outline-none focus-visible:outline-none"
               />
             </label>
+            <Button type="submit" disabled={status === "loading"}>
+              {cta.form.button}
+              <Image src="/assets/icons/cta-phone-arrow.svg" alt="" width={18} height={18} />
+            </Button>
             {/* Honeypot for bots */}
             <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0 opacity-0" />
           </form>

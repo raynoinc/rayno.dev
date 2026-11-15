@@ -8,9 +8,7 @@ export function ConnectorPaths() {
         <path
           key={d}
           d={d}
-          className="hero-flow"
-          stroke="#4D8EFF"
-          strokeOpacity="0.6"
+          className="hero-flow stroke-[#0d6eff]/45 dark:stroke-[#4d8eff]/60"
           strokeWidth="1.5"
           strokeDasharray="4 6"
         />

@@ -15,32 +15,40 @@ type IconKey = keyof typeof iconStyle;
 const rowTracks = "lg:row-span-7 lg:grid lg:grid-rows-subgrid";
 
 /**
- * Compare — three separate cards (RTL: Rayno, custom, theme) with a row-label column on desktop.
- * Rayno is the featured card: brand header, brand border + glow, and it extends past the others.
+ * Compare — RTL desktop order: criteria, theme, custom, Rayno (featured, last / leftmost).
+ * Rayno keeps the brand header, brand border + glow, and extends past the others.
  */
 export function Compare() {
   const { compare } = content;
   const last = compare.headers.length - 1;
-  // Content keeps the original column order (theme, custom, Rayno); show Rayno first in RTL.
-  const columns = compare.headers
-    .map((header, i) => ({
-      header,
-      featured: i === last,
-      cells: compare.rows.map((row) => ({ feature: row.feature, ...row.values[i] })),
-    }))
-    .reverse();
+  // Content column order is already theme, custom, Rayno — in RTL that puts Rayno last (left).
+  const columns = compare.headers.map((header, i) => ({
+    header,
+    featured: i === last,
+    cells: compare.rows.map((row) => ({ feature: row.feature, ...row.values[i] })),
+  }));
 
   return (
     <section id="compare" className="relative bg-bg py-20 md:py-28">
       <div className="container">
         <SectionHeader eyebrow={compare.eyebrow} title={compare.title} subtitle={compare.subtitle} />
 
-        <div className="mt-14 grid gap-5 lg:gap-y-0 lg:grid-cols-[150px_minmax(0,1.16fr)_minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-[auto_repeat(6,minmax(62px,auto))]">
-          {/* Row labels (desktop). On mobile each cell shows its own label. */}
-          <div aria-hidden className={cn("hidden lg:pb-4", rowTracks)}>
-            <div />
+        <div className="mt-14 grid gap-5 lg:gap-y-0 lg:grid-cols-[200px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.16fr)] lg:grid-rows-[auto_repeat(6,minmax(62px,auto))]">
+          {/* Criteria labels (desktop). On mobile each cell shows its own label. */}
+          <div className={cn("hidden overflow-hidden rounded-3xl border border-border bg-surface lg:my-4", rowTracks)}>
+            <header className="flex items-end justify-end bg-surface-2 px-4 py-[18px] lg:px-[22px]">
+              <div className="flex flex-col gap-0.5 text-end">
+                <span dir="ltr" className="text-[11px] leading-[19.25px] font-semibold tracking-[0.88px] text-text-muted">
+                  {compare.criteria.eyebrow}
+                </span>
+                <h3 className="text-[17px] leading-[29.75px] font-bold text-text-primary">{compare.criteria.label}</h3>
+              </div>
+            </header>
             {compare.rows.map((row) => (
-              <div key={row.feature} className="flex items-center ps-1 text-[14px] leading-[24.5px] font-semibold text-text-primary">
+              <div
+                key={row.feature}
+                className="flex items-center justify-end border-t border-border-subtle px-4 py-[14px] text-[14px] leading-[24.5px] font-bold text-text-primary lg:px-[22px] lg:py-[18px]"
+              >
                 {row.feature}
               </div>
             ))}

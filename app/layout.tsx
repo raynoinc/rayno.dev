@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ServiceWorkerRegister } from "@/components/pwa/service-worker-register";
 import { content } from "@/lib/content";
 import "./globals.css";
 
@@ -12,9 +13,43 @@ const iranYekanX = localFont({
   weight: "100 900",
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0f1a" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: content.site.title,
   description: content.site.description,
+  applicationName: "راینو",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: [{ url: "/favicon.ico" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#004de5" }],
+  },
+  appleWebApp: {
+    capable: true,
+    title: "راینو",
+    statusBarStyle: "default",
+  },
+  other: {
+    "msapplication-TileColor": "#004de5",
+    "msapplication-TileImage": "/mstile-150x150.png",
+    "msapplication-config": "/browserconfig.xml",
+  },
   openGraph: {
     title: content.site.title,
     description: content.site.description,
@@ -39,6 +74,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <ServiceWorkerRegister />
         </ThemeProvider>
       </body>
     </html>

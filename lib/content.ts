@@ -483,8 +483,6 @@ export const content = {
       { label: "مقایسه", href: "#compare" },
       { label: "سؤالات متداول", href: "#faq" },
     ],
-    cta: "مشاورهٔ رایگان",
-    ctaHref: "#cta",
     domain: "rayno.dev",
     copyright: "© ۱۴۰۵ راینو. همهٔ حقوق محفوظ است.",
   },

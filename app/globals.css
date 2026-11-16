@@ -263,3 +263,26 @@ code,
   from { --vt-p: 0px; }
   to { --vt-p: var(--vt-r, 2400px); }
 }
+
+/* Minimal scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-brand-2) transparent;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-brand-2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-brand);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

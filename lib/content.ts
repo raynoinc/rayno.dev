@@ -475,36 +475,17 @@ export const content = {
 
   footer: {
     description: "محصول کامل برای برند شما: طراحی اختصاصی، به‌اضافهٔ بک‌اند، پنل مدیریت و ماژول‌ها، روی زیرساختی آماده، امن و همیشه به‌روز.",
-    tagline: "Rayno — Built to Evolve.",
     // RTL order (rightmost first)
-    sections: [
-      {
-        title: "راینو",
-        links: [
-          { label: "چرا راینو", href: "#why-rayno" },
-          { label: "چطور کار می‌کند", href: "#how-it-works" },
-          { label: "مقایسه", href: "#compare" },
-        ],
-      },
-      {
-        title: "محصولات",
-        links: [
-          { label: "فروشگاه آنلاین", href: "#products" },
-          { label: "وب‌سایت شرکتی", href: "#products" },
-          { label: "اپلیکیشن", href: "#products" },
-        ],
-      },
-      {
-        title: "ارتباط",
-        links: [
-          { label: "مشاورهٔ رایگان", href: "#cta" },
-          { label: "لیست انتظار", href: "#cta" },
-          { label: "تماس با ما", href: "#cta" },
-        ],
-      },
+    links: [
+      { label: "چرا راینو", href: "#why-rayno" },
+      { label: "چطور کار می‌کند", href: "#how-it-works" },
+      { label: "چه می‌شود ساخت", href: "#products" },
+      { label: "مقایسه", href: "#compare" },
+      { label: "سؤالات متداول", href: "#faq" },
     ],
+    cta: "مشاورهٔ رایگان",
+    ctaHref: "#cta",
     domain: "rayno.dev",
-    language: "فارسی · FA",
     copyright: "© ۱۴۰۵ راینو. همهٔ حقوق محفوظ است.",
   },
 } as const;
